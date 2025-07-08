@@ -1,106 +1,11 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daftar Harga Produk PPOB</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <title>Mengalihkan ke Harga Produk</title>
+  <meta http-equiv="refresh" content="0; url=https://cloud.infinitysmart.co.id/pricing/685205/G-70b8acc5-0c4e-4c45-b088-6a66e572e660">
 </head>
-<body class="bg-gray-100 text-gray-800">
-
-  <div class="max-w-6xl mx-auto p-6">
-    <h1 class="text-3xl font-bold text-green-700 text-center mb-4">📋 Daftar Harga Produk PPOB</h1>
-
-    <!-- Pencarian dan Filter -->
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
-      <input id="cariInput" type="text" placeholder="Cari nama produk..." class="w-full md:w-1/2 px-4 py-2 border rounded shadow" />
-      <select id="filterOperator" class="px-4 py-2 border rounded shadow bg-white">
-        <option value="">Semua Operator</option>
-        <option value="TSEL">Telkomsel</option>
-        <option value="XL">XL</option>
-        <option value="IND">Indosat</option>
-        <option value="TRI">Tri</option>
-        <option value="AXIS">Axis</option>
-      </select>
-    </div>
-
-    <!-- Tabel -->
-    <div class="overflow-x-auto bg-white shadow rounded-lg">
-      <table class="w-full table-auto text-sm">
-        <thead class="bg-green-600 text-white">
-          <tr>
-            <th class="p-3 text-left">Nama Produk</th>
-            <th class="p-3 text-left">Harga</th>
-            <th class="p-3 text-left">Kode SKU</th>
-          </tr>
-        </thead>
-        <tbody id="tabel-harga">
-          <tr><td colspan="3" class="text-center p-4 text-gray-500">Memuat data harga...</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="text-center mt-6">
-      <a href="index.html" class="inline-block bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
-        ← Kembali ke Beranda
-      </a>
-    </div>
-  </div>
-
-  <script>
-    let dataAsli = [];
-
-    // Ambil data dari server
-    fetch("https://cloud.infinitysmart.co.id/pricing/685205/G-70b8acc5-0c4e-4c45-b088-6a66e572e660")
-      .then(response => response.json())
-      .then(data => {
-        dataAsli = data;
-        tampilkanData(dataAsli);
-      })
-      .catch(error => {
-        console.error("Gagal ambil data:", error);
-        document.getElementById("tabel-harga").innerHTML = `
-          <tr><td colspan="3" class="text-center text-red-500 p-4">Gagal memuat data dari server.</td></tr>
-        `;
-      });
-
-    function tampilkanData(data) {
-      const tbody = document.getElementById("tabel-harga");
-      tbody.innerHTML = "";
-
-      if (!data || data.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="3" class="text-center p-4 text-gray-500">Tidak ada data.</td></tr>`;
-        return;
-      }
-
-      data.forEach(item => {
-        tbody.innerHTML += `
-          <tr class="border-b hover:bg-gray-50">
-            <td class="p-3">${item.product_name}</td>
-            <td class="p-3">Rp${item.price.toLocaleString("id-ID")}</td>
-            <td class="p-3">${item.buyer_sku_code}</td>
-          </tr>
-        `;
-      });
-    }
-
-    // Fitur pencarian & filter
-    document.getElementById("cariInput").addEventListener("input", filterData);
-    document.getElementById("filterOperator").addEventListener("change", filterData);
-
-    function filterData() {
-      const keyword = document.getElementById("cariInput").value.toLowerCase();
-      const operator = document.getElementById("filterOperator").value.toUpperCase();
-
-      const hasil = dataAsli.filter(item => {
-        const cocokNama = item.product_name.toLowerCase().includes(keyword);
-        const cocokOperator = operator ? item.buyer_sku_code.startsWith(operator) : true;
-        return cocokNama && cocokOperator;
-      });
-
-      tampilkanData(hasil);
-    }
-  </script>
-
+<body>
+  <p>Mengalihkan ke harga produk... Jika tidak diarahkan, <a href="https://cloud.infinitysmart.co.id/pricing/685205/G-70b8acc5-0c4e-4c45-b088-6a66e572e660">klik di sini</a>.</p>
 </body>
 </html>
